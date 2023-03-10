@@ -11,6 +11,11 @@ def make_image(crop_values):
         paste_img.paste(cropped_img, (0, 0), mask=cropped_img.split()[3])
     paste_img.save("static/img/image.png")
 
+
+def rotate_value(current, maximum, bump=1):
+    return (current + bump) % maximum
+
+
 crop_values = [0, 0, 0, 0]
 app = Flask(__name__)
 
@@ -18,41 +23,11 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        if request.form.get('act1') == 'Head1':
-            crop_values[0] = 0
-        elif request.form.get('act1') == 'Head2':
-            crop_values[0] = 1
-        elif request.form.get('act1') == 'Head3':
-            crop_values[0] = 2
-        elif request.form.get('act1') == 'Head4':
-            crop_values[0] = 3
-
-        if request.form.get('act1') == 'Body1':
-            crop_values[1] = 0
-        elif request.form.get('act1') == 'Body2':
-            crop_values[1] = 1
-        elif request.form.get('act1') == 'Body3':
-            crop_values[1] = 2
-        elif request.form.get('act1') == 'Body4':
-            crop_values[1] = 3
-
-        if request.form.get('act1') == 'Border1':
-            crop_values[2] = 0
-        elif request.form.get('act1') == 'Border2':
-            crop_values[2] = 1
-        elif request.form.get('act1') == 'Border3':
-            crop_values[2] = 2
-        elif request.form.get('act1') == 'Border4':
-            crop_values[2] = 3
-
-        if request.form.get('act1') == 'Eyes1':
-            crop_values[3] = 0
-        elif request.form.get('act1') == 'Eyes2':
-            crop_values[3] = 1
-        elif request.form.get('act1') == 'Eyes3':
-            crop_values[3] = 2
-        elif request.form.get('act1') == 'Eyes4':
-            crop_values[3] = 3
+        for act_number in range(4):
+            if request.form.get(f'act{act_number}') == '>':
+                crop_values[act_number] = rotate_value(crop_values[act_number], 4)
+            elif request.form.get(f'act{act_number}') == '<':
+                crop_values[act_number] = rotate_value(crop_values[act_number], 4, -1)
     elif request.method == 'GET':
         return render_template('index.html')
     make_image(crop_values)
