@@ -3,7 +3,7 @@ from PIL import Image
 from random import randint
 
 img = Image.open("static/img/Parts.png")
-
+# Создаёт изображение персонажа на основе параметров его составляющих
 def make_image(crop_values):
     paste_img = img.crop((crop_values[0] * 15, 0, (crop_values[0] + 1) * 15, 20))
     for i in range(1, len(crop_values)):
@@ -11,12 +11,13 @@ def make_image(crop_values):
         paste_img.paste(cropped_img, (0, 0), mask=cropped_img.split()[3])
     paste_img.save("static/img/image.png")
 
-
+# Имитирует расположение чисел в цикле: 0->1->2->3->0
 def rotate_value(current, maximum, bump=1):
     return (current + bump) % maximum
 
-
+# Initiation
 crop_values = [0, 0, 0, 0]
+make_image(crop_values)
 app = Flask(__name__)
 
 
@@ -24,6 +25,7 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         for act_number in range(4):
+            # Кнопки ротации составляющих
             if request.form.get(f'act{act_number}') == '>':
                 crop_values[act_number] = rotate_value(crop_values[act_number], 4)
             elif request.form.get(f'act{act_number}') == '<':
