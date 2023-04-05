@@ -1,12 +1,12 @@
-"""Этот модуль реализует функционал работы с изображениями"""
+"""Этот модуль реализует функционал работы с изображениями."""
 from PIL import Image
 
 
 def make_image(crop_values):
     """Эта функция принимает массив параметров персонажа и сохраняет изображение
-    готового персонажа в файл static/img/image.png
+    готового персонажа в файл static/img/image.png.
 
-    Она использует файл static/img/Parts.png и вырезает из него выбранные части персонажа"""
+    Она использует файл static/img/Parts.png и вырезает из него выбранные части персонажа."""
     img = Image.open("static/img/Parts.png")
     paste_img = img.crop((crop_values[0] * 15, 0, (crop_values[0] + 1) * 15, 20))
     for i in range(1, len(crop_values)):
@@ -17,5 +17,5 @@ def make_image(crop_values):
 
 
 def rotate_value(current, maximum, bump=1):
-    """Эта функция возвращает увеличенное значение, имитируя цикличность: 0->1->2->3->0"""
+    """Эта функция возвращает увеличенное значение, имитируя цикличность: 0->1->2->3->0."""
     return (current + bump) % maximum

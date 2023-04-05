@@ -1,10 +1,8 @@
-"""Этот модуль реализует функционал работы с сайтом"""
+"""Этот модуль реализует функционал работы с сайтом."""
 from flask import Flask, render_template, request
 from random import randint
 import webbrowser
 from ImageForge import *
-
-webbrowser.open('http://127.0.0.1:5000')
 
 # Инициализация
 character_stats = [0, 0, 0, 0]
@@ -14,7 +12,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    """Эта функция реализует главную страницу"""
+    """Эта функция реализует главную страницу."""
     if request.method == 'POST':
         for act_number in range(4):
             # Кнопки ротации составляющих
@@ -31,4 +29,7 @@ def index():
     return render_template("index.html")
 
 
-app.run()
+def forge_start():
+    """Эта функция запускает сервер и открывает сайт."""
+    app.run()
+    webbrowser.open('http://127.0.0.1:5000')
