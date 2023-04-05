@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "Persone-Forge"
+version = "0.1.0"
+description = "Вебсайт для создания изображений персонажей"
+authors = ["Мухин Дмитрий", "Есакова Елизавета"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.2.3"
+Pillow = "^9.4.0"
+
+[tool.poetry.scripts]
+run-main = "Persona-Forge.main:forge_start"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
