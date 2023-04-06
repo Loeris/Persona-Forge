@@ -31,5 +31,5 @@ def index():
 
 def forge_start():
     """Эта функция запускает сервер и открывает сайт."""
-    app.run()
     webbrowser.open('http://127.0.0.1:5000')
+    app.run()
