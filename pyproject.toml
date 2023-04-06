@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "Persone-Forge"
+name = "Persona-Forge"
 version = "0.1.0"
 description = "Вебсайт для создания изображений персонажей"
 authors = ["Мухин Дмитрий", "Есакова Елизавета"]
