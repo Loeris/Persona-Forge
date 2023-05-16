@@ -1,0 +1,108 @@
+<style>
+  body {
+    background-color: #eee;
+  }
+  .home a {
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  }
+  .home a:hover { background-color: #555; }
+
+  .container {
+    display: flex;
+  }
+
+  .buttons {
+    flex: 1;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  input[type=submit] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 2px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #555;
+  }
+
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    display: block;
+    margin: 20px;
+    image-rendering: pixelated;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="buttons">
+<div class="home">
+<a href="/">Домашняя страница</a> </section>
+<a href="/vault">Хранилище</a> </section>
+</div>
+<br>
+      <form method="post" action="/forge">
+        <div>
+          <input type="submit" value="<" name="act2" />
+          <input type="submit" value="?" name="act2" />
+          <input type="submit" value=">" name="act2" />
+          Head
+        </div>
+        <div>
+          <input type="submit" value="<" name="act1" />
+          <input type="submit" value="?" name="act1" />
+          <input type="submit" value=">" name="act1" />
+          Body
+        </div>
+        <div>
+          <input type="submit" value="<" name="act0" />
+          <input type="submit" value="?" name="act0" />
+          <input type="submit" value=">" name="act0" />
+          Border
+        </div>
+        <div>
+          <input type="submit" value="<" name="act3" />
+          <input type="submit" value="?" name="act3" />
+          <input type="submit" value=">" name="act3" />
+          Eyes
+        </div>
+      </form>
+    </div>
+    <div class="image-container">
+      <img src="{{ url_for('static', filename='img/image.png') }}" width="{{context.size}}">
+          <form method="post" action="/forge">
+        <div class="size">
+          <input type="submit" value="-" name="size" />
+          <input type="submit" value="+" name="size" />
+          Size
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

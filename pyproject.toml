@@ -8,6 +8,7 @@ authors = ["Мухин Дмитрий", "Есакова Елизавета"]
 python = "^3.11"
 flask = "^2.2.3"
 Pillow = "^9.4.0"
+flask-sqlalchemy = "^3.0.3"
 
 [tool.poetry.scripts]
 run-main = "Persona-Forge.main:forge_start"
